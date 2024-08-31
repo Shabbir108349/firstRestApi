@@ -25,7 +25,25 @@ const postAllController = (req,res,next) =>{
     })
 }
 
+const putAllController = (req,res,next)=>{
+    let id = req.params.id
+    model.findByIdAndUpdate(id,{$set:{
+        name : req.body.name,
+        email : req.body.email
+    }})
+    .then(data =>{
+        model.findById(data._id)
+        .then(newdata =>{
+            res.json({newdata})
+        })
+    })
+    .catch(error =>{
+        console.log(error)
+    })
+}
+
 module.exports = {
     getAllController,
-    postAllController
+    postAllController,
+    putAllController
 }
