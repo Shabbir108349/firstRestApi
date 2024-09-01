@@ -3,7 +3,11 @@ const model = require('../Model/Schema')
 const getAllController = (req, res, next)=>{
     model.find()
     .then(data =>{
-        res.json({data})
+        res.json({
+            status:"1",
+            message:"Successful",
+            data
+        })
     })
     .catch(error =>{
         console.log(error)
